@@ -1,0 +1,5 @@
+= nf-plugin-generator: A Nextflow Plugin to generate ... Nextflow plugins
+Jorge Aguilera <jorge@incsteps.com>
+:toc: left
+:imagesdir: images
+

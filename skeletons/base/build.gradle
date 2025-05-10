@@ -1,0 +1,53 @@
+plugins {
+    id "idea"
+    id 'org.asciidoctor.jvm.convert'
+    id 'io.nextflow.nextflow-plugin'
+}
+
+group project.findProperty('group')
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    // see https://docs.gradle.org/4.1/userguide/dependency_management.html#sub:exclude_transitive_dependencies
+    runtimeClasspath.exclude group: 'org.slf4j', module: 'slf4j-api'
+}
+
+dependencies {
+}
+
+
+asciidoctor{
+
+  resources {
+    from('src/docs/asciidoc/images') {
+      include '**/*.png'
+    }
+
+    into './images'
+  }
+}
+
+nextflowPlugin {
+    // minimum nextflow version
+    nextflowVersion = project.findProperty('nextflow_version')
+
+    provider = project.findProperty('provider')
+    className = project.findProperty('classname')
+    extensionPoints = [
+            {{EXTENSIONS}}
+    ]
+
+    publishing {
+        github {
+            repository = project.findProperty('github_repository')
+            userName = project.findProperty('github_username')
+            authToken = project.findProperty('github_access_token')
+            email = project.findProperty('github_commit_email')
+
+            indexUrl = 'https://github.com/nextflow-io/plugins/main/plugins.json'
+        }
+    }
+}
