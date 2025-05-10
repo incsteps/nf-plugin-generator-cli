@@ -1,0 +1,56 @@
+plugins {
+    id("io.micronaut.application") version "4.5.0"
+    id("com.gradleup.shadow") version "8.3.6"
+}
+
+version = "0.1"
+group = "com.incsteps.nextflow"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor("info.picocli:picocli-codegen")
+    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    implementation("info.picocli:picocli")
+    implementation("io.micronaut.picocli:micronaut-picocli")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("ch.qos.logback:logback-classic")
+
+    implementation("org.eclipse.jgit:org.eclipse.jgit:7.2.0.202503040940-r")
+}
+
+
+application {
+    mainClass = "com.incsteps.nextflow.GeneratorCommand"
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("21")
+    targetCompatibility = JavaVersion.toVersion("21")
+}
+
+
+
+micronaut {
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.incsteps.nextflow.*")
+    }
+}
+
+
+tasks.named("dockerfileNative") {
+    jdkVersion = "21"
+}
+
+graalvmNative {
+    binaries {
+        main {
+            imageName.set('nf-plugin-generator')
+            buildArgs.add('-Ob')
+        }
+    }
+}
+
