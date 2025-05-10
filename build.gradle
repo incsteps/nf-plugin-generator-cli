@@ -1,4 +1,6 @@
 plugins {
+    id "idea"
+    id 'org.asciidoctor.jvm.convert'
     id("io.micronaut.application") version "4.5.0"
     id("com.gradleup.shadow") version "8.3.6"
 }
@@ -40,6 +42,16 @@ micronaut {
     }
 }
 
+asciidoctor{
+
+    resources {
+        from('src/docs/asciidoc/images') {
+            include '**/*.png'
+        }
+
+        into './images'
+    }
+}
 
 tasks.named("dockerfileNative") {
     jdkVersion = "21"

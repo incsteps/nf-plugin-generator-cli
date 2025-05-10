@@ -111,7 +111,7 @@ public class GeneratorCommand implements Runnable {
                     nextflow run main.nf
                 
                     In order to publish your plugin, please remember to change gradle.properties with your user, organization, etc
-                    """.stripIndent(), name, basePath+"/"+name);
+                    """.stripIndent(), name, directory.getAbsolutePath()+"/"+name);
 
         }catch (Exception e) {
             logger.error("Error {}", e.getMessage(), e);

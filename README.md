@@ -9,7 +9,7 @@ It takes a plugin name and optional parameters to generate a basic plugin struct
 
 ## Requirements
 
-- Java Development Kit (JDK) 21 (Graalvm) or higher.
+
 
 ## Usage
 
@@ -66,6 +66,8 @@ The following options can be used to customize the plugin generation:
 
 
 ## Getting Started (for developers)
+
+Java Development Kit (JDK) 21 (Graalvm) or higher is required
 
 1.  **Clone the repository:**
 
