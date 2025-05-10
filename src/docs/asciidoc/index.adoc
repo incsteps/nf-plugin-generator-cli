@@ -13,6 +13,8 @@ It takes a plugin name and optional parameters to generate a basic plugin struct
 
 - Linux machine. Not tested yet with MacOS or Windows
 
+- Grab last version from releases page at https://github.com/incsteps/nf-plugin-generator-cli/releases
+
 == Usage
 
 To generate a new Nextflow plugin, execute the following command:
